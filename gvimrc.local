@@ -1,6 +1,3 @@
-" set the nice color scheme
-color dawnpaul
-
 " enlarge CommandT
 let g:CommandTMaxHeight=40
 

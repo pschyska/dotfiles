@@ -1,0 +1,16 @@
+" set the nice color scheme
+color dawnpaul
+
+" enlarge CommandT
+let g:CommandTMaxHeight=40
+
+" set the nice font
+set guifont=Anonymous\ Pro:h13
+
+" Map extra keys on non US keyboards
+map ü <C-]>
+map ö [
+map ä ]
+map Ö {
+map Ä }
+map ß /

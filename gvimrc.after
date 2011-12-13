@@ -1,0 +1,7 @@
+" enlarge CommandT
+let g:CommandTMaxHeight=40
+
+" set the nice font
+set guifont=Anonymous\ Pro:h13
+colorscheme damnpaul
+

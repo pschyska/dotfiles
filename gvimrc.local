@@ -3,11 +3,13 @@ let g:CommandTMaxHeight=40
 
 " set the nice font
 set guifont=Anonymous\ Pro:h13
+colorscheme damnpaul
 
-" Map extra keys on non US keyboards
-map ü <C-]>
-map ö [
-map ä ]
-map Ö {
-map Ä }
-map ß /
+" Terminal-Like tab switching
+
+" macm Window.Select\ Previous\ Tab  key=<D-ö>
+" macm Window.Select\ Next\ Tab	     key=<D-ä>
+
+map <D-ö> :tabprev<CR>
+map <D-ä> :tabnext<CR>
+

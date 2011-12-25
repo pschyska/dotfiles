@@ -5,3 +5,6 @@ let g:CommandTMaxHeight=40
 set guifont=Anonymous\ Pro:h13
 colorscheme damnpaul
 
+"macm File.New\ Tab key=<D-T>
+macm  File.Open\ Tab\.\.\. key=<Nop>
+macm  File.New\ Tab key=<D-T>

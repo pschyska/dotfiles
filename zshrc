@@ -32,6 +32,26 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 [[ -s "/Users/pasc/.rvm/scripts/rvm" ]] && source "/Users/pasc/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
+# Define Vim wrappers which unsets GEM_HOME and GEM_PATH before
+# invoking vim and all known aliases
+#
+# @author Wael Nasreddine <wael.nasreddine@gmail.com>
+function define_vim_wrappers()
+{
+  vim_commands=(
+    eview evim gview gvim gvimdiff gvimtutor rgview
+    rgvim rview rvim vim vimdiff vimtutor xxd mvim
+  )
+
+  for cmd in ${vim_commands[@]}; do
+    cmd_path=`/usr/bin/env which -a "${cmd}" 2>/dev/null | grep '^/'`
+    if [ -x "${cmd_path}" ]; then
+      eval "function ${cmd} () { (unset GEM_HOME; unset GEM_PATH; $cmd_path \$@) }"
+    fi
+  done
+}
+define_vim_wrappers
+
 # brews first
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
@@ -45,7 +65,10 @@ alias l='ls -lahp'
 export MYLOCALVIMRC="$HOME/.vimrc.local"
 export MYLOCALGVIMRC="$HOME/.gvimrc.local"
 
-export EDITOR="mvim -f"
+#vim wrappers are not called here
+export EDITOR="unset GEM_HOME;unset GEM_PATH; mvim -f"
+
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 
 alias r='rails'
 alias gco='git checkout'

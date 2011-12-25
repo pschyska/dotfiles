@@ -7,7 +7,6 @@ set wrap
 " Set 7 lines to the cursor - when moving vertical
 set so=7
 
-" gocode omnifunc autocompletion
 ":imap <C-Space> <C-x><C-o>
 
 " pretty print XML

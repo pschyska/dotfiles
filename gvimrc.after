@@ -1,10 +1,2 @@
-" enlarge CommandT
-let g:CommandTMaxHeight=40
-
-" set the nice font
-set guifont=Anonymous\ Pro:h13
+set guifont=Anonymous\ Pro:h14
 colorscheme damnpaul
-
-"macm File.New\ Tab key=<D-T>
-macm  File.Open\ Tab\.\.\. key=<Nop>
-macm  File.New\ Tab key=<D-T>

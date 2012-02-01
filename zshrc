@@ -44,8 +44,11 @@ export CXX=/usr/bin/g++-4.2
 alias ll='ls -lahrtp'
 alias l='ls -lahp'
 
-export MYLOCALVIMRC="$HOME/.vimrc.local"
-export MYLOCALGVIMRC="$HOME/.gvimrc.local"
+export VB="$HOME/.vimrc.before"
+export VA="$HOME/.vimrc.after"
+export GB="$HOME/.gvimrc.before"
+export GA="$HOME/.gvimrc.after"
+
 
 #vim wrappers are not called here
 export EDITOR="unset GEM_HOME;unset GEM_PATH; mvim -f"

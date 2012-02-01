@@ -1,2 +1,5 @@
+" JANUS
+" call janus#disable_plugin('ctrlp')
 " SIMPLENOTE
 source ~/.simplenoterc
+

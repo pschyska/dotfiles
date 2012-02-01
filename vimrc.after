@@ -3,17 +3,26 @@
 "autocmd FocusLost * :wall
 " hide toolbar
 set go-=T
-set wrap
+"set wrap
 " Set 7 lines to the cursor - when moving vertical from http://amix.dk/vim/vimrc.html
 set so=7
 " after using ., move cursor back to editing location when you started (http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/)
 nmap . .`[
+" everything that goes to or from unnamed register will affect *, too (OSX
+" cliboard)
+set clipboard=unnamed
+" Edit this file. I do this very often :-)
+nmap <F12> :tabe $VA<CR>
+" source current buffer
+nmap <F11> :source %<CR>
 
 " ECLIM
 au FileType java      imap <C-Space> <C-x><C-u>
 au FileType java      nnoremap <silent> <buffer> <leader>i :JavaImportMissing<cr>:JavaImportClean<cr>:w<cr>
 au FileType java      nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
 au FileType java      nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+au FileType java      set shiftwidth=4 " eclipse uses 4 spaces to indent
+au FileType java      set softtabstop=4
 
 let g:autotagmaxTagsFileSize=1024*1024*200
 
@@ -23,6 +32,16 @@ let g:ctrlp_extensions = ['tag']
 let g:ctrlp_working_path_mode = 0
 " search file names and ignore paths
 let g:ctrlp_by_filename = 1
+" caches under ~/.vim-cache
+let g:ctrlp_cache_dir = $HOME.'/.vim-cache/ctrlp'
+"
+" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
+" 
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\..*$|target$',
+  \ 'file': '/tags$|\.project$|\.classpath$|.DS_Store$',
+  \ 'link': '',
+  \ }
 
 " TAGBAR
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
@@ -30,11 +49,10 @@ nmap <F8> :TagbarToggle<CR>
 
 " SUPERTAB
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = '<c-p>'
-let g:SuperTabCompletionContexts = ['s:ContextDiscover']
-let g:SuperTabContextDiscoverDiscovery =
-        \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+" let g:SuperTabContextDefaultCompletionType = '<c-p>'
+" let g:SuperTabCompletionContexts = ['s:ContextDiscover']
+" let g:SuperTabContextDiscoverDiscovery =
+"         \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 
 " NERDTREE
-
 map <Leader>f :NERDTreeFind<cr>

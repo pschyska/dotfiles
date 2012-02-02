@@ -134,7 +134,7 @@ Bundle 'AutoTag'
   let g:autotagmaxTagsFileSize=1024*1024*200
 Bundle 'Tagbar'
   let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-  nmap <F8> :TagbarToggle<CR>"}}}
+  nmap <F8> :TagbarToggle<CR>
 Bundle 'unimpared.vim'
   " Normal Mode: Bubble single lines
   nmap <C-Up> [e
@@ -144,6 +144,7 @@ Bundle 'unimpared.vim'
   vmap <C-Down> ]egv
 Bundle 'ZoomWin'
   map <leader>zw :ZoomWin<CR>
+"}}}
 
 " settings "{{{
 

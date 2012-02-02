@@ -11,28 +11,113 @@ call vundle#rc()
 " bundles"{{{
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
+  nmap <leader>gb :Gblame<CR>
+  nmap <leader>gs :Gstatus<CR>
+  nmap <leader>gd :Gdiff<CR>
+  nmap <leader>gl :Glog<CR>
+  nmap <leader>gc :Gcommit<CR>
+  nmap <leader>gp :Git push<CR>
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails'
+Bundle 'kwbdi.vim'
+  nmap <C-W>! <Plug>Kwbd
+Bundle 'Gundo'
+  nmap <F5> :GundoToggle<CR>
+  imap <F5> <ESC>:GundoToggle<CR>
 Bundle 'scrooloose/nerdtree'
   map <Leader>n :NERDTreeToggle<CR>
   map <Leader>f :NERDTreeFind<CR>
+  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
+  let NERDTreeHijackNetrw = 0
+
+  augroup AuNERDTreeCmd
+  autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+  autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
+
+  " If the parameter is a directory, cd into it
+  function! s:CdIfDirectory(directory)
+    let explicitDirectory = isdirectory(a:directory)
+    let directory = explicitDirectory || empty(a:directory)
+
+    if explicitDirectory
+      exe "cd " . fnameescape(a:directory)
+    endif
+
+    " Allows reading from stdin
+    " ex: git diff | mvim -R -
+    if strlen(a:directory) == 0
+      return
+    endif
+
+    if directory
+      NERDTree
+      wincmd p
+      bd
+    endif
+
+    if explicitDirectory
+      wincmd p
+    endif
+  endfunction
+
+  " NERDTree utility function
+  function! s:UpdateNERDTree(...)
+    let stay = 0
+
+    if(exists("a:1"))
+      let stay = a:1
+    end
+
+    if exists("t:NERDTreeBufName")
+      let nr = bufwinnr(t:NERDTreeBufName)
+      if nr != -1
+        exe nr . "wincmd w"
+        exe substitute(mapcheck("R"), "<CR>", "", "")
+        if !stay
+          wincmd p
+        end
+      endif
+    endif
+
+    if exists(":CommandTFlush") == 2
+      CommandTFlush
+    endif
+  endfunction
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'Syntastic'
+  let g:syntastic_enable_signs=1
+  let g:syntastic_quiet_warnings=0
+  let g:syntastic_auto_loc_list=2
 Bundle 'ervandew/supertab'
   let g:SuperTabDefaultCompletionType = "context"
 Bundle 'scrooloose/nerdcommenter'
+  " NERDCommenter mappings
+  if has("gui_macvim") && has("gui_running")
+    map <D-/> <plug>NERDCommenterToggle<CR>
+    imap <D-/> <Esc><plug>NERDCommenterToggle<CR>
+  else
+    map <leader> <plug>NERDCommenterToggle<CR>
+    imap <leader> <Esc><plug>NERDCommenterToggle<CR>
+  endif
 Bundle 'scrooloose/syntastic'
+Bundle 'Gist.vim'
+  let g:gist_clip_command = 'pbcopy'
+  " detect filetype if vim failed auto-detection.
+  let g:gist_detect_filetype = 1
+Bundle 'ack.vim'
+  map <D-F> :Ack<space>
 Bundle "pschyska/damnpaul"
   colorscheme damnpaul
 Bundle 'mrtazz/simplenote.vim'
   source ~/.simplenoterc
 " Bundle 'ervandew/eclim', {'rtp': 'org.eclim.vimplugin/vim/'}
-  au FileType java      imap <C-SPACE> <C-x><C-u>
-  au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
-  au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>d :JavaDocSearch -x declarations<CR>
-  au FileType java      nnoremap <SILENT> <BUFFER> <CR> :JavaSearchContext<CR>
-  au FileType java      set shiftwidth=4 " eclipse uses 4 spaces to indent
-  au FileType java      set softtabstop=4
+  "au FileType java      imap <C-SPACE> <C-x><C-u>
+  "au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
+  "au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>d :JavaDocSearch -x declarations<CR>
+  "au FileType java      nnoremap <SILENT> <BUFFER> <CR> :JavaSearchContext<CR>
+  "au FileType java      set shiftwidth=4 " eclipse uses 4 spaces to indent
+  "au FileType java      set softtabstop=4
 Bundle 'gitv'
 Bundle 'Align'
 " Bundle 'L9'
@@ -50,11 +135,27 @@ Bundle 'AutoTag'
 Bundle 'Tagbar'
   let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
   nmap <F8> :TagbarToggle<CR>"}}}
+Bundle 'unimpared.vim'
+  " Normal Mode: Bubble single lines
+  nmap <C-Up> [e
+  nmap <C-Down> ]e
+  " Visual Mode: Bubble multiple lines
+  vmap <C-Up> [egv
+  vmap <C-Down> ]egv
+Bundle 'ZoomWin'
+  map <leader>zw :ZoomWin<CR>
 
 " settings "{{{
 
 " misc {{{
 set foldmethod=marker
+
+" unobstrusive buffer navigation
+" switch frames
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
 
 " auto-save
 au FocusLost * silent! wall
@@ -67,8 +168,8 @@ set go-=T
 " Set 7 lines to the cursor when moving vertical from http://amix.dk/vim/vimrc.html
 set so=7
 " after using ., move cursor back to editing location when you started (http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/)
-nmap . .`["{{{
-" everything that goes to or from unnamed register will affect *, too (OSX cliboard)"}}}
+nmap . .`[
+" everything that goes to or from unnamed register will affect *, too (OSX cliboard)"
 set clipboard=unnamed
 " Edit .vimrc
 nmap <F12> :tabe ~/.vimrc<CR>

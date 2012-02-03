@@ -9,7 +9,40 @@ call vundle#rc()
 " required! "}}}
 
 " bundles"{{{
-Bundle 'gmarik/vundle'
+
+" Langs
+Bundle "tpope/vim-haml.git"
+Bundle "pangloss/vim-javascript"
+Bundle "tpope/vim-cucumber"
+Bundle "tpope/vim-markdown"
+Bundle "ajf/puppet-vim"
+Bundle "bdd/vim-scala"
+Bundle "nono/vim-handlebars"
+Bundle "kchmck/vim-coffee-script"
+Bundle "tpope/vim-rails"
+Bundle "tpope/vim-git"
+Bundle "timcharper/textile.vim"
+Bundle "skwp/vim-rspec"
+Bundle "cakebaker/scss-syntax.vim"
+Bundle "vim-scripts/csv.vim"
+Bundle "mmalecki/vim-node.js"
+Bundle "vim-ruby/vim-ruby"
+Bundle "vim-scripts/Arduino-syntax-file"
+
+" Tools
+Bundle "edsono/vim-matchit"
+Bundle "tpope/vim-surround"
+Bundle "garbas/vim-snipmate"
+Bundle "tomtom/tlib_vim"
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "honza/snipmate-snippets"
+Bundle "jbking/vim-pep8"
+Bundle "michaeljsmith/vim-indent-object"
+Bundle "tpope/vim-endwise"
+Bundle "vim-scripts/vimwiki"
+Bundle "ap/vim-css-color"
+Bundle "chrisbra/NrrwRgn"
+Bundle "vim-scripts/Rename2"
 Bundle 'tpope/vim-fugitive'
   nmap <leader>gb :Gblame<CR>
   nmap <leader>gs :Gstatus<CR>
@@ -99,6 +132,7 @@ Bundle 'scrooloose/nerdcommenter'
     map <leader> <plug>NERDCommenterToggle<CR>
     imap <leader> <Esc><plug>NERDCommenterToggle<CR>
   endif
+Bundle 'Buffergator'
 Bundle 'scrooloose/syntastic'
 Bundle 'Gist.vim'
   let g:gist_clip_command = 'pbcopy'
@@ -108,9 +142,11 @@ Bundle 'ack.vim'
   map <D-F> :Ack<space>
 Bundle "pschyska/damnpaul"
   colorscheme damnpaul
-Bundle 'mrtazz/simplenote.vim'
-  source ~/.simplenoterc
-" Bundle 'ervandew/eclim', {'rtp': 'org.eclim.vimplugin/vim/'}
+"Bundle 'mrtazz/simplenote.vim'
+  "source ~/.simplenoterc
+" Bundle 'ervandew/eclim'
+" installed with eclim installer
+"set rtp+=~/.vim/eclim
   "au FileType java      imap <C-SPACE> <C-x><C-u>
   "au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
   "au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>d :JavaDocSearch -x declarations<CR>
@@ -134,7 +170,7 @@ Bundle 'AutoTag'
 Bundle 'Tagbar'
   let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
   nmap <F8> :TagbarToggle<CR>
-Bundle 'unimpared.vim'
+Bundle 'unimpaired.vim'
   " Normal Mode: Bubble single lines
   nmap <C-Up> [e
   nmap <C-Down> ]e

@@ -6,7 +6,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! "}}}
+" required!
+Bundle 'gmarik/vundle'
+
+"}}}
 
 " bundles"{{{
 
@@ -58,6 +61,20 @@ Bundle 'kwbdi.vim'
 Bundle 'Gundo'
   nmap <F5> :GundoToggle<CR>
   imap <F5> <ESC>:GundoToggle<CR>
+Bundle 'git://git.wincent.com/command-t.git'
+  let g:CommandTMaxFiles=20000
+  let g:CommandTMatchWindowReverse=1
+  let g:CommandTMaxHeight=40
+  " don't limit the directory cache. I have lots of memory but not time :)
+  let g:CommandTMaxCachedDirectories=0
+
+  if has("gui_macvim") && has("gui_running")
+    map <D-t> :CommandT<CR>
+    imap <D-t> <ESC>:CommandT<CR>
+  else
+    map <C-t> :CommandT<CR>
+    imap <C-t> <ESC>:CommandT<CR>
+  endif
 Bundle 'scrooloose/nerdtree'
   map <Leader>n :NERDTreeToggle<CR>
   map <Leader>f :NERDTreeFind<CR>
@@ -155,16 +172,6 @@ Bundle "pschyska/damnpaul"
   "au FileType java      set softtabstop=4
 Bundle 'gitv'
 Bundle 'Align'
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-Bundle 'git://git.wincent.com/command-t.git'
-  if has("gui_macvim") && has("gui_running")
-    map <D-t> :CommandT<CR>
-    imap <D-t> <ESC>:CommandT<CR>
-  else
-    map <C-t> :CommandT<CR>
-    imap <C-t> <ESC>:CommandT<CR>
-  endif
 Bundle 'AutoTag'
   let g:autotagmaxTagsFileSize=1024*1024*200
 Bundle 'Tagbar'
@@ -186,15 +193,22 @@ Bundle 'ZoomWin'
 " misc {{{
 set foldmethod=marker
 
-" unobstrusive buffer navigation
-" switch frames
+" switch windows
 map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
 
-" auto-save
+" auto-save on alt-tab
 au FocusLost * silent! wall
+" auto-save when switching buffers
+" NOTE: this doesn't behave as expected i.e. with CommandT (trying to switch
+" from modified buffer still opens new split instead of saving)
+" set hidden should be equivalent with auto saving on alt-tab for most
+" use-cases. Set bot because NERDTree doesn't allow switching from modified
+" buffer without autowriteall
+set autowriteall
+set hidden
 if has("gui_running")
   " Automatically resize splits when resizing MacVim window
   autocmd VimResized * wincmd =
@@ -495,7 +509,8 @@ set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
 " Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+" set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+set wildignore+=*/.bundle/*,*/.sass-cache/*
 
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*

@@ -155,21 +155,23 @@ Bundle 'Gist.vim'
   let g:gist_clip_command = 'pbcopy'
   " detect filetype if vim failed auto-detection.
   let g:gist_detect_filetype = 1
-Bundle 'ack.vim'
-  map <D-F> :Ack<space>
+Bundle 'grep.vim'
+  let Grep_Xargs_Options = '-0' 
 Bundle "pschyska/damnpaul"
   colorscheme damnpaul
 "Bundle 'mrtazz/simplenote.vim'
   "source ~/.simplenoterc
 " Bundle 'ervandew/eclim'
 " installed with eclim installer
-"set rtp+=~/.vim/eclim
-  "au FileType java      imap <C-SPACE> <C-x><C-u>
-  "au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
-  "au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>d :JavaDocSearch -x declarations<CR>
-  "au FileType java      nnoremap <SILENT> <BUFFER> <CR> :JavaSearchContext<CR>
-  "au FileType java      set shiftwidth=4 " eclipse uses 4 spaces to indent
-  "au FileType java      set softtabstop=4
+set rtp+=~/.vim/eclim
+  au FileType java      imap <C-SPACE> <C-x><C-u>
+  au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
+  au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>d :JavaDocSearch -x declarations<CR>
+  au FileType java      nnoremap <SILENT> <BUFFER> <CR> :JavaSearchContext<CR>
+  au FileType java      set shiftwidth=4 " eclipse uses 4 spaces to indent
+  au FileType java      set softtabstop=4
+  au FileType jsp       set shiftwidth=2
+  au FileType jsp       set softtabstop=2
 Bundle 'gitv'
 Bundle 'Align'
 Bundle 'AutoTag'

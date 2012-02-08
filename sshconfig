@@ -1,0 +1,3 @@
+Compression=yes
+TCPKeepAlive=no
+ServerAliveInterval=15

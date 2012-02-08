@@ -517,6 +517,10 @@ set wildignore+=*/.bundle/*,*/.sass-cache/*
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
+" maven
+set wildignore+=*/target
+
+set wildignore+=tags
 ""
 "" Backup and swap files
 ""

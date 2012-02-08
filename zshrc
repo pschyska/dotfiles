@@ -49,9 +49,7 @@ export VA="$HOME/.vimrc.after"
 export GB="$HOME/.gvimrc.before"
 export GA="$HOME/.gvimrc.after"
 
-
-#vim wrappers are not called here
-export EDITOR="unset GEM_HOME;unset GEM_PATH; mvim -f"
+export EDITOR="mvim -f"
 
 export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 

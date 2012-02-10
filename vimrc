@@ -137,7 +137,6 @@ Bundle 'Syntastic'
   let g:syntastic_quiet_warnings=0
   let g:syntastic_auto_loc_list=2
 Bundle 'ervandew/supertab'
-  let g:SuperTabDefaultCompletionType = "context"
 Bundle 'scrooloose/nerdcommenter'
   " NERDCommenter mappings
   if has("gui_macvim") && has("gui_running")
@@ -162,10 +161,10 @@ Bundle "pschyska/damnpaul"
 " Bundle 'ervandew/eclim'
 " installed with eclim installer
 set rtp+=~/.vim/eclim
-  au FileType java      imap <C-SPACE> <C-x><C-u>
-  au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
-  au FileType java      nnoremap <SILENT> <BUFFER> <LEADER>d :JavaDocSearch -x declarations<CR>
-  au FileType java      nnoremap <SILENT> <BUFFER> <CR> :JavaSearchContext<CR>
+  au FileType java      imap <C-Space> <C-x><C-u>
+  au FileType java      nmap <silent> <buffer> <Leader>i :JavaImportMissing<CR>:JavaImportClean<CR>:w<CR>
+  au FileType java      nmap <silent> <buffer> <Leader>d :JavaDocSearch -x declarations<CR>
+  au FileType java      nmap <silent> <buffer> <CR> :JavaSearchContext<CR>
   au FileType java      set shiftwidth=4 " eclipse uses 4 spaces to indent
   au FileType java      set softtabstop=4
   au FileType jsp       set shiftwidth=2

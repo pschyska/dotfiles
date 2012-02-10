@@ -5,7 +5,7 @@ group user
 highlight Hint font: bold 13pt "Anonymous Pro" !important; margin: -.2ex; padding: 0 0 0 1px; border: 1px solid rgba(0, 0, 0, 1); background: rgba(0, 153, 0, .9); color: black;
 highlight Hint[ambiguous] background: rgba(255, 51, 0, .9);
 map -count -modes=hints <Space> <Return>
-set guioptions=brsT
+set guioptions=brs
 set hintkeys=asdfhjkl
 set hlfind
 

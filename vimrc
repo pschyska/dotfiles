@@ -35,10 +35,8 @@ Bundle "vim-scripts/Arduino-syntax-file"
 " Tools
 Bundle "edsono/vim-matchit"
 Bundle "tpope/vim-surround"
-Bundle "garbas/vim-snipmate"
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "honza/snipmate-snippets"
 Bundle "jbking/vim-pep8"
 Bundle "michaeljsmith/vim-indent-object"
 Bundle "tpope/vim-endwise"
@@ -479,14 +477,17 @@ set backspace=indent,eol,start    " backspace through everything in insert mode
 
 let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
 
-" List chars
 set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
+if has('gui_running')
+  set listchars=tab:▸\            " a tab should display as "▸ "
+  set listchars+=trail:·          " show trailing spaces as "·"
+else
+  set listchars=tab:>\            " a tab should display as "> "
+  set listchars+=trail:.          " show trailing spaces as "."
+endif
 set listchars+=extends:>          " The character to show in the last column when wrap is
                                   " off and the line continues beyond the right of the screen
 set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
 
 ""
 "" Searching

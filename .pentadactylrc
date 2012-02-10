@@ -2,14 +2,11 @@
 
 loadplugins '\.(js|penta)$'
 group user
-
-""" HINTS """
-" default highlight Hint font: bold 10px "Droid Sans Mono", monospace !important; margin: -.2ex; padding: 0 0 0 1px; outline: 1px solid rgba(0, 0, 0, .5); background: rgba(255, 248, 231, .8); color: black;
 highlight Hint font: bold 13pt "Anonymous Pro" !important; margin: -.2ex; padding: 0 0 0 1px; border: 1px solid rgba(0, 0, 0, 1); background: rgba(0, 153, 0, .9); color: black;
 highlight Hint[ambiguous] background: rgba(255, 51, 0, .9);
+map -count -modes=hints <Space> <Return>
+set guioptions=brsT
 set hintkeys=asdfhjkl
-map -modes hints <Space> <CR>
-
 set hlfind
 
 " vim: set ft=pentadactyl:

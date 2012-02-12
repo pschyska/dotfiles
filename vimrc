@@ -33,8 +33,11 @@ Bundle "vim-ruby/vim-ruby"
 Bundle "vim-scripts/Arduino-syntax-file"
 
 " Tools
+Bundle "lucapette/vim-ruby-doc.git"
+  let g:ruby_doc_command='open'
 Bundle "edsono/vim-matchit"
 Bundle "tpope/vim-surround"
+Bundle 'AutoClose'
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "jbking/vim-pep8"
@@ -193,10 +196,14 @@ Bundle 'ZoomWin'
 set foldmethod=marker
 
 " switch windows
-map <C-h> <C-W>h
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-l> <C-W>l
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+" http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
+nnoremap <S-Enter> O<Esc>
+nnoremap <CR> o<Esc>
 
 " auto-save on alt-tab
 au FocusLost * silent! wall

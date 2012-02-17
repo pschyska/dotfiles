@@ -9,4 +9,8 @@ set guioptions=brs
 set hintkeys=asdfhjkl
 set hlfind
 
+set editor='/usr/local/bin/mvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
+
+set complete=l
+
 " vim: set ft=pentadactyl:

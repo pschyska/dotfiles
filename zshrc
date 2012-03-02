@@ -32,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 [[ -s "/Users/pasc/.rvm/scripts/rvm" ]] && source "/Users/pasc/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
-alias mvim='rvm system do /usr/local/bin/mvim $@'
+# alias mvim='rvm system do /usr/local/bin/mvim $@'
 
 # brews first
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
@@ -50,8 +50,6 @@ export GB="$HOME/.gvimrc.before"
 export GA="$HOME/.gvimrc.after"
 
 export EDITOR="mvim -f"
-
-export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 
 alias r='rails'
 alias gco='git checkout'

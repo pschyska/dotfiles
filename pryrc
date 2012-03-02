@@ -20,7 +20,7 @@ Pry.config.editor = "mvim -f"
 # Prompt with ruby version
 Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 
-%w{map_by_method hirb}.each { |gem| require gem }
+require 'hirb'
 
 # Toys methods
 # Stealed from https://gist.github.com/807492

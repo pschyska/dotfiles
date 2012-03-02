@@ -37,7 +37,6 @@ Bundle "lucapette/vim-ruby-doc.git"
   let g:ruby_doc_command='open'
 Bundle "edsono/vim-matchit"
 Bundle "tpope/vim-surround"
-Bundle 'AutoClose'
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "jbking/vim-pep8"

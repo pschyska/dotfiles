@@ -9,7 +9,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="kphoen"
 
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -29,29 +29,11 @@ plugins=(git osx bundler)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-[[ -s "/Users/pasc/.rvm/scripts/rvm" ]] && source "/Users/pasc/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-
-# alias mvim='rvm system do /usr/local/bin/mvim $@'
-
-# brews first
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-
-# Lion ships with llvm-gcc-4.2 as default compiler, fix that as it breaks rubies and brews
-export CC=/usr/bin/gcc-4.2
-export CXX=/usr/bin/g++-4.2
-
 alias ll='ls -lahrtp'
 alias l='ls -lahp'
 
-export VB="$HOME/.vimrc.before"
-export VA="$HOME/.vimrc.after"
-export GB="$HOME/.gvimrc.before"
-export GA="$HOME/.gvimrc.after"
-
-export EDITOR="mvim -f"
-
 alias r='rails'
+
 alias gco='git checkout'
 alias gf='git fetch'
 alias gp='git pull'
@@ -64,17 +46,5 @@ alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gru='git remote update'
 alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
-
 alias grbu='git pull --rebase upstream $1'
 alias gpu='git pull upstream $1'
-
-alias p='mvim ~/.profile'
-
-#alias ep='ls *.tmproj && open *.tmproj || m .'
-#alias e='ep'
-
-alias c="cucumber -f pretty -t ~@slow"
-alias cuc="c -t @current"
-
-alias bi="bundle install"
-

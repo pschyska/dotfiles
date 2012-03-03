@@ -61,20 +61,39 @@ Bundle 'kwbdi.vim'
 Bundle 'Gundo'
   nmap <F5> :GundoToggle<CR>
   imap <F5> <ESC>:GundoToggle<CR>
-Bundle 'git://git.wincent.com/command-t.git'
-  let g:CommandTMaxFiles=20000
-  let g:CommandTMatchWindowReverse=1
-  let g:CommandTMaxHeight=40
-  " don't limit the directory cache. I have lots of memory but not time :)
-  let g:CommandTMaxCachedDirectories=0
-
+Bundle 'kien/ctrlp.vim'
+  let g:ctrlp_working_path_mode = 0
+  let g:ctrlp_map = ''
   if has("gui_macvim") && has("gui_running")
-    map <D-t> :CommandT<CR>
-    imap <D-t> <ESC>:CommandT<CR>
+    map <D-t> :CtrlP<CR>
+    imap <D-t> <ESC>:CtrlP<CR>
+    map <D-r> :CtrlPMRUFiles<CR>
+    imap <D-r> <ESC>:CtrlPMRUFiles<CR>
   else
-    map <C-t> :CommandT<CR>
-    imap <C-t> <ESC>:CommandT<CR>
+    map <C-t> :CtrlP<CR>
+    imap <C-t> <ESC>:CtrlP<CR>
+    map <C-r> :CtrlPMRUFiles<CR>
+    imap <C-r> <ESC>:CtrlPMRUFiles<CR>
   endif
+
+"Bundle 'git://git.wincent.com/command-t.git'
+"  let g:CommandTMaxFiles=20000
+"  let g:CommandTMatchWindowReverse=1
+"  let g:CommandTMaxHeight=40
+"  " don't limit the directory cache. I have lots of memory but not time :)
+"  let g:CommandTMaxCachedDirectories=0
+"
+"  if has("gui_macvim") && has("gui_running")
+"    map <D-t> :CommandT<CR>
+"    imap <D-t> <ESC>:CommandT<CR>
+"    map <D-r> :CommandTBuffer<CR>
+"    imap <D-r> <ESC>:CommandTBuffer<CR>
+"  else
+"    map <C-t> :CommandT<CR>
+"    imap <C-t> <ESC>:CommandT<CR>
+"    map <C-r> :CommandTBuffer<CR>
+"    imap <C-r> <ESC>:CommandTBuffer<CR>
+"  endif
 Bundle 'scrooloose/nerdtree'
   map <Leader>n :NERDTreeToggle<CR>
   map <Leader>f :NERDTreeFind<CR>
@@ -526,7 +545,7 @@ set wildignore+=*.swp,*~,._*
 " maven
 set wildignore+=*/target
 
-set wildignore+=tags
+" set wildignore+=tags
 ""
 "" Backup and swap files
 ""

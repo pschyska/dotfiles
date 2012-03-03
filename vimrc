@@ -62,8 +62,19 @@ Bundle 'Gundo'
   nmap <F5> :GundoToggle<CR>
   imap <F5> <ESC>:GundoToggle<CR>
 Bundle 'kien/ctrlp.vim'
+  " don't determine working path, use pwd
   let g:ctrlp_working_path_mode = 0
   let g:ctrlp_map = ''
+  let g:ctrlp_mruf_exclude = '.*/COMMIT_EDITMSG'
+  " only show mru files in current pwd
+  let g:ctrlp_mruf_relative = 1
+  " sort by last entered buffer
+  let g:ctrlp_mruf_last_entered = 1
+  " don't switch tab
+  let g:ctrlp_jump_to_buffer = 1
+  let g:ctrlp_follow_symlinks = 1
+  " don't evaluate paths
+  let g:ctrlp_by_filename = 1
   if has("gui_macvim") && has("gui_running")
     map <D-t> :CtrlP<CR>
     imap <D-t> <ESC>:CtrlP<CR>
@@ -225,13 +236,7 @@ nnoremap <CR> o<Esc>
 
 " auto-save on alt-tab
 au FocusLost * silent! wall
-" auto-save when switching buffers
-" NOTE: this doesn't behave as expected i.e. with CommandT (trying to switch
-" from modified buffer still opens new split instead of saving)
-" set hidden should be equivalent with auto saving on alt-tab for most
-" use-cases. Set bot because NERDTree doesn't allow switching from modified
-" buffer without autowriteall
-set autowriteall
+
 set hidden
 if has("gui_running")
   " Automatically resize splits when resizing MacVim window

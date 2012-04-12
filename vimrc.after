@@ -1,8 +1,8 @@
 " switch windows
-map <C-H> <C-W>h
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-L> <C-W>l
+map <silent> <C-H> :wincmd h<CR>
+map <silent> <C-J> :wincmd j<CR>
+map <silent> <C-K> :wincmd k<CR>
+map <silent> <C-L> :wincmd l<CR>
 
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap <S-Enter> O<Esc>

@@ -8,3 +8,6 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export CC=/usr/bin/gcc-4.2
 export CXX=/usr/bin/g++-4.2
 export EDITOR="mvim -f"
+
+export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=256m"
+export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"

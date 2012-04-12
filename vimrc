@@ -61,32 +61,70 @@ Bundle 'kwbdi.vim'
 Bundle 'Gundo'
   nmap <F5> :GundoToggle<CR>
   imap <F5> <ESC>:GundoToggle<CR>
-Bundle 'kien/ctrlp.vim'
-  " don't determine working path, use pwd
-  let g:ctrlp_working_path_mode = 0
-  let g:ctrlp_map = ''
-  let g:ctrlp_mruf_exclude = '.*/COMMIT_EDITMSG'
-  " only show mru files in current pwd
-  let g:ctrlp_mruf_relative = 1
-  " sort by last entered buffer
-  let g:ctrlp_mruf_last_entered = 1
-  " don't switch tab
-  let g:ctrlp_jump_to_buffer = 1
-  let g:ctrlp_follow_symlinks = 1
-  " don't evaluate paths
-  let g:ctrlp_by_filename = 1
+" Bundle 'kien/ctrlp.vim'
+"   let g:ctrlp_custom_ignore = {
+"     \ 'dir':  'extjs$\|doc$\|public/images$',
+"     \ 'file': 'tags$',
+"     \ 'link': '',
+"     \ }
+"   " don't determine working path, use pwd
+"   let g:ctrlp_working_path_mode = 0
+"   let g:ctrlp_max_files = 20000
+"   let g:ctrlp_user_command = 'find %s -type f'
+"   let g:ctrlp_map = ''
+"   let g:ctrlp_mruf_exclude = '.*/COMMIT_EDITMSG'
+"   " only show mru files in current pwd
+"   let g:ctrlp_mruf_relative = 1
+"   " sort by last entered buffer
+"   let g:ctrlp_mruf_last_entered = 1
+"   " don't switch tab
+"   let g:ctrlp_jump_to_buffer = 1
+"   let g:ctrlp_follow_symlinks = 1
+"   " don't evaluate paths
+"   " let g:ctrlp_by_filename = 1
+"   if has("gui_macvim") && has("gui_running")
+"     map <D-t> :CtrlP<CR>
+"     imap <D-t> <ESC>:CtrlP<CR>
+"     map <D-r> :CtrlPMRUFiles<CR>
+"     imap <D-r> <ESC>:CtrlPMRUFiles<CR>
+"   else
+"     map <C-t> :CtrlP<CR>
+"     imap <C-t> <ESC>:CtrlP<CR>
+"     map <C-r> :CtrlPMRUFiles<CR>
+"     imap <C-r> <ESC>:CtrlPMRUFiles<CR>
+"   endif
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+  " default: let g:fuf_modesDisable = [ 'mrufile', 'mrucmd', ]
+  let g:fuf_modesDisable = [ 'mrucmd', ]
+  " default let g:fuf_mrufile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|^(\/\/|\\\\|\/mnt\/|\/media\/)'
+  let g:fuf_mrufile_exclude = 'COMMIT_EDITMSG$'
+  " FuzzyFinder keybindings
+  function! OpenCoverageFile()
+    if stridx(bufname("%"),"NERD_tree") >= 0
+      :wincmd w
+    endif
+    :FufCoverageFile
+  endfunction
+  function! OpenMruFile()
+    if stridx(bufname("%"),"NERD_tree") >= 0
+      :wincmd w
+    endif
+    :FufMruFileInCwd
+  endfunction 
   if has("gui_macvim") && has("gui_running")
-    map <D-t> :CtrlP<CR>
-    imap <D-t> <ESC>:CtrlP<CR>
-    map <D-r> :CtrlPMRUFiles<CR>
-    imap <D-r> <ESC>:CtrlPMRUFiles<CR>
+    map <D-t> :call OpenCoverageFile()<CR>
+    imap <D-t> <ESC>:call OpenCoverageFile()<CR>
+    map <D-r> :call OpenMruFile()<CR>
+    imap <D-r> <ESC>:call OpenMruFile()<CR>
   else
-    map <C-t> :CtrlP<CR>
-    imap <C-t> <ESC>:CtrlP<CR>
-    map <C-r> :CtrlPMRUFiles<CR>
-    imap <C-r> <ESC>:CtrlPMRUFiles<CR>
+    map <C-t> :call OpenCoverageFile()<CR>
+    imap <C-t> <ESC>:call OpenCoverageFile()<CR>
+    map <C-r> :call OpenMruFile()<CR>
+    imap <C-r> <ESC>:call OpenMruFile()<CR>
   endif
-
+  nmap <silent> <F10> <ESC>:FufRenewCache<CR>
+  imap <silent> <F10> <ESC>:FufRenewCache<CR>
 "Bundle 'git://git.wincent.com/command-t.git'
 "  let g:CommandTMaxFiles=20000
 "  let g:CommandTMatchWindowReverse=1
@@ -110,10 +148,12 @@ Bundle 'scrooloose/nerdtree'
   map <Leader>f :NERDTreeFind<CR>
   let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
   let NERDTreeHijackNetrw = 0
+  let NERDTreeShowHidden=1
 
   augroup AuNERDTreeCmd
   autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
   autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
+  autocmd AuNERDTreeCmd BufWritePost * call s:UpdateNERDTree()
 
   " If the parameter is a directory, cd into it
   function! s:CdIfDirectory(directory)
@@ -160,9 +200,10 @@ Bundle 'scrooloose/nerdtree'
       endif
     endif
 
-    if exists(":CommandTFlush") == 2
-      CommandTFlush
-    endif
+"    if exists(":CommandTFlush") == 2
+"      CommandTFlush
+"    endif
+
   endfunction
 Bundle 'Syntastic'
   let g:syntastic_enable_signs=1
@@ -178,14 +219,13 @@ Bundle 'scrooloose/nerdcommenter'
     map <leader> <plug>NERDCommenterToggle<CR>
     imap <leader> <Esc><plug>NERDCommenterToggle<CR>
   endif
-Bundle 'Buffergator'
 Bundle 'scrooloose/syntastic'
-Bundle 'Gist.vim'
-  let g:gist_clip_command = 'pbcopy'
-  " detect filetype if vim failed auto-detection.
-  let g:gist_detect_filetype = 1
-Bundle 'grep.vim'
-  let Grep_Xargs_Options = '-0' 
+Bundle "mileszs/ack.vim"
+  if has("gui_macvim") && has("gui_running")
+    map <D-F> :Ack<space>
+  else
+      map <C-F> :Ack<space>
+  endif
 Bundle "pschyska/damnpaul"
   colorscheme damnpaul
 "Bundle 'mrtazz/simplenote.vim'
@@ -249,7 +289,7 @@ set so=7
 " after using ., move cursor back to editing location when you started (http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/)
 nmap . .`[
 " everything that goes to or from unnamed register will affect *, too (OSX cliboard)"
-set clipboard=unnamed
+" set clipboard=unnamed
 " Edit .vimrc
 nmap <F12> :tabe ~/.vimrc<CR>
 " source current buffer
@@ -273,7 +313,7 @@ filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 au FileType make set noexpandtab
 
 " Make sure all mardown files have the correct filetype set and setup wrapping
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown | call s:setupWrapping()
 
 " Treat JSON files like JavaScript
 au BufNewFile,BufRead *.json set ft=javascript
@@ -542,15 +582,21 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
 " Ignore bundler and sass cache
 " set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-set wildignore+=*/.bundle/*,*/.sass-cache/*
+set wildignore+=*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
+" hide tmp and log dirs
+set wildignore+=*/tmp,*/log
+
 " maven
 set wildignore+=*/target
 
-" set wildignore+=tags
+" source .vimrc in pwd when vim is started
+set exrc
+set secure
+
 ""
 "" Backup and swap files
 ""

@@ -1,0 +1,4 @@
+colorscheme damnpaul
+set guifont=Anonymous\ Pro:h14
+" hide toolbar
+set go-=T

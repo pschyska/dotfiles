@@ -1,3 +1,6 @@
+" Select current file in NERDTree
+map <silent> <Leader>f :NERDTreeFind<CR>
+"
 " switch windows
 map <silent> <C-H> :wincmd h<CR>
 map <silent> <C-J> :wincmd j<CR>
@@ -18,7 +21,7 @@ set so=7
 " after using ., move cursor back to editing location when you started (http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/)
 nmap . .`[
 " everything that goes to or from unnamed register will affect *, too (OSX cliboard)"
-" set clipboard=unnamed
+set clipboard=unnamed
 " Edit .vimrc
 nmap <F12> :tabe ~/.vimrc.after<CR>
 " source current buffer
@@ -34,6 +37,10 @@ set listchars+=precedes:<         " The character to show in the last column whe
 " source .vimrc in pwd when vim is started
 set exrc
 set secure
+
+" go to normal mode on tab or window change
+" http://superuser.com/questions/236534/change-to-normal-mode-when-macvim-goes-background
+au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 ""
 "" Wild settings
@@ -52,3 +59,6 @@ set wildignore+=*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/tmp/*
 
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
+
+" Disable png files
+set wildignore+=*.png

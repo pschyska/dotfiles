@@ -48,8 +48,18 @@ au FileType java set tabstop=4 shiftwidth=4
 " eclim, fix imports and format source
 au FileType java map <silent> <C-i> :JavaImportMissing<CR>:JavaImportClean<CR>:%JavaFormat<CR>
 
-" rebind user completion
+" rebind user completion to C-Space
 au FileType java imap <C-Space> <C-x><C-u>
+
+" ESC to cancel completion
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+set completeopt+=longest
 
 ""
 "" Wild settings

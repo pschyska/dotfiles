@@ -42,6 +42,15 @@ set secure
 " http://superuser.com/questions/236534/change-to-normal-mode-when-macvim-goes-background
 au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
+" indent java with 4 spaces
+au FileType java set tabstop=4 shiftwidth=4
+
+" eclim, fix imports and format source
+au FileType java map <silent> <C-i> :JavaImportMissing<CR>:JavaImportClean<CR>:%JavaFormat<CR>
+
+" rebind user completion
+au FileType java imap <C-Space> <C-x><C-u>
+
 ""
 "" Wild settings
 

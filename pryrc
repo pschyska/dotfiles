@@ -20,7 +20,7 @@ Pry.config.editor = "mvim -f"
 # Prompt with ruby version
 Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 
-require 'hirb'
+#require 'hirb'
 
 # Toys methods
 # Stealed from https://gist.github.com/807492
@@ -37,11 +37,11 @@ class Hash
 end
 
 # rails specific stuff
-if defined?(Rails) && Rails.env
+#if defined?(Rails) && Rails.env
   # https://github.com/cldwalker/hirb/issues/46#issuecomment-1870823
-  Pry.config.print = proc do |output, value|
-    Hirb::View.view_or_page_output(value) || Pry::DEFAULT_PRINT.call(output, value)
-  end
+#  Pry.config.print = proc do |output, value|
+#    Hirb::View.view_or_page_output(value) || Pry::DEFAULT_PRINT.call(output, value)
+#  end
 
-  Hirb.enable
-end
+#  Hirb.enable
+#end

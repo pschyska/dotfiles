@@ -1,0 +1,7 @@
+[user]
+  name = Paul Schyska
+  email = pschyska@googlemail.com
+[core]
+  autocrlf = false
+[github]
+  user = pschyska

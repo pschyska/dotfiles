@@ -27,13 +27,22 @@ nmap <F12> :tabe ~/.vimrc.after<CR>
 " source current buffer
 nmap <F11> :source %<CR>
 
-set listchars=""                  " Reset the listchars
-set listchars=tab:▸\            " a tab should display as "▸ "
-set listchars+=trail:·          " show trailing spaces as "·"
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " The character to show in the last column when wrap is
+let g:ctrlp_max_files = 100000
+let g:ctrlp_working_path_mode = 0
 
+map <silent> <D-r> :CtrlPMRUFiles<CR>
+
+set listchars=""                " Reset the listchars
+"set listchars=tab:▸\            " a tab should display as "▸ "
+set listchars=tab:\ \           " a tab should display as "▸ "
+"set listchars+=trail:·          " show trailing spaces as "·"
+set listchars+=trail:\          " show trailing spaces as "·"
+set listchars+=extends:>        " The character to show in the last column when wrap is
+                                " off and the line continues beyond the right of the screen
+set listchars+=precedes:<       " The character to show in the last column when wrap is
+
+
+"
 " source .vimrc in pwd when vim is started
 set exrc
 set secure
@@ -48,6 +57,12 @@ au FileType java set tabstop=4 shiftwidth=4
 " eclim, fix imports and format source
 au FileType java map <silent> <C-i> :JavaImportMissing<CR>:JavaImportClean<CR>:%JavaFormat<CR>
 
+au FileType java map <silent> <D-I> :JavaImport<CR>
+au FileType java imap <silent> <D-I> :JavaImport<CR>
+
+let g:EclimMavenPomClasspathUpdate = 0
+let g:EclimJavaCompleteCaseSensitive = 1
+
 " rebind user completion to C-Space
 au FileType java imap <C-Space> <C-x><C-u>
 
@@ -60,6 +75,7 @@ inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDow
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 set completeopt+=longest
+
 
 ""
 "" Wild settings

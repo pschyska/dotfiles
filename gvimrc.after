@@ -1,4 +1,5 @@
 colorscheme damnpaul
-set guifont=Anonymous\ Pro:h14
+set guifont=Nameless\ Amateur:h12
+set noantialias
 " hide toolbar
 set go-=T

@@ -50,3 +50,5 @@ alias gru='git remote update'
 alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
 alias grbu='git pull --rebase upstream $1'
 alias gpu='git pull upstream $1'
+
+HISTSIZE=2000

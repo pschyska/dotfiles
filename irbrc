@@ -14,7 +14,7 @@ if defined?(::Bundler) && !@bundler_global_gemset_set
   puts "global gemset added to load path"
 end
 # Use Pry everywhere
-require "rubygems"
-require 'pry'
-Pry.start
-exit
+#require "rubygems"
+#require 'pry'
+#Pry.start
+#exit

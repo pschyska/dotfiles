@@ -8,7 +8,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/Applications/SenchaSDKTools-2.0.0-beta3
 export SENCHA_SDK_TOOLS_2_0_0_BETA3=/Applications/SenchaSDKTools-2.0.0-beta3
 
-
+# go
 export GOPATH=~/projects/go
 export PATH=$PATH:$GOPATH/bin
 

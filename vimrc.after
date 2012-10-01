@@ -1,5 +1,10 @@
 " Select current file in NERDTree
 map <silent> <Leader>f :NERDTreeFind<CR>
+" change pwd when nt changes root
+let NERDTreeChDirMode=1
+let NERDTreeShowHidden=1
+let NERDTreeCasadeOpenSingleChildDir=1
+cnoreabbrev cd NERDTree
 
 " switch windows
 map <silent> <C-H> :wincmd h<CR>
@@ -25,7 +30,7 @@ set so=7
 " after using ., move cursor back to editing location when you started (http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/)
 nmap . .`[
 " everything that goes to or from unnamed register will affect *, too (OSX cliboard)"
-" set clipboard=unnamed
+set clipboard=unnamed
 " Edit .vimrc
 nmap <F12> :tabe ~/.vimrc.after<CR>
 " source current buffer
@@ -37,8 +42,8 @@ let g:ctrlp_working_path_mode = 0
 map <silent> <D-r> :CtrlPMRUFiles<CR>
 
 set listchars=""                " Reset the listchars
-"set listchars=tab:▸\            " a tab should display as "▸ "
-set listchars=tab:\ \           " a tab should display as " "
+set listchars=tab:▸\            " a tab should display as "▸ "
+"set listchars=tab:\ \           " a tab should display as " "
 set listchars+=trail:·          " show trailing spaces as "·"
 "set listchars+=trail:\          " show trailing spaces as "·"
 set listchars+=extends:>        " The character to show in the last column when wrap is

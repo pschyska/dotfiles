@@ -25,7 +25,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx)
+plugins=(git ruby rails bundler osx)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt CORRECT
@@ -35,6 +35,8 @@ alias ll='ls -lahrtp'
 alias l='ls -lahp'
 
 alias r='rails'
+
+alias be='bundle exec'
 
 alias gco='git checkout'
 alias gf='git fetch'

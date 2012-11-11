@@ -101,8 +101,13 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 "set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/tmp/*
 
-" Disable temp and backup files
+" Ignore temp and backup files
 set wildignore+=*.swp,*~,._*
 
-" Disable png files
+" Ignore png files
 set wildignore+=*.png
+
+" Ignore .DS_Store files
+set wildignore+=*.DS_Store
+"
+"

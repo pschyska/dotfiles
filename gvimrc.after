@@ -1,5 +1,8 @@
-colorscheme damnpaul
-set guifont=Nameless\ Amateur:h12
-set noantialias
+"colorscheme damnpaul
+"set guifont=Nameless\ Amateur:h12
+" set noantialias
+"
+colorscheme railscasts
+set guifont=Source\ Code\ Pro:h13
 " hide toolbar
 set go-=T

@@ -1,9 +1,15 @@
+" Scratch buffer
+noremap <silent> <Leader><Tab> :Scratch<CR>
+
 " Select current file in NERDTree
 map <silent> <Leader>f :NERDTreeFind<CR>
 " change pwd when nt changes root
 let NERDTreeChDirMode=1
 let NERDTreeShowHidden=1
 let NERDTreeCasadeOpenSingleChildDir=1
+let NERDTreeIgnore=['^\.DS_Store$']
+
+" alias NERDTree to cd :-)
 cnoreabbrev cd NERDTree
 
 " switch windows
@@ -23,6 +29,40 @@ nnoremap <silent> <F10> :w<CR>:Fmt<CR>:!go run %<CR>
 " auto-save on alt-tab
 au FocusLost * silent! wall
 
+" Highlight currently open file in nerdtree
+" see http://superuser.com/questions/195022/vim-how-to-synchronize-nerdtree-with-current-opened-tab-file-path
+" returns true iff is NERDTree open/active
+function! rc:isNTOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" returns true iff focused window is NERDTree window
+function! rc:isNTFocused()
+  return -1 != match(expand('%'), 'NERD_Tree') 
+endfunction
+
+" returns true iff focused window is Scratch bugger
+function! rc:isScratchFocused()
+  return -1 != match(expand('%'), '__Scratch__') 
+endfunction
+
+
+" returns true iff current window contains a file in current pwd
+function! rc:isInsideCwd()
+  return -1 != stridx(expand('%:p'), getcwd())
+endfunction
+
+
+" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+function! rc:syncTree()
+  if &modifiable && rc:isNTOpen() && !rc:isNTFocused() && !rc:isScratchFocused() && strlen(expand('%')) > 0 && !&diff && rc:isInsideCwd()
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+autocmd BufEnter * call rc:syncTree()
+
 set hidden
 
 " Set 7 lines to the cursor when moving vertical from http://amix.dk/vim/vimrc.html
@@ -38,8 +78,9 @@ nmap <F11> :source %<CR>
 
 let g:ctrlp_max_files = 100000
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_clear_cache_on_exit = 1
 
-map <silent> <D-r> :CtrlPMRUFiles<CR>
+map <silent> <C-y> :CtrlPMRUFiles<CR>
 
 set listchars=""                " Reset the listchars
 set listchars=tab:▸\            " a tab should display as "▸ "
@@ -111,3 +152,16 @@ set wildignore+=*.png
 set wildignore+=*.DS_Store
 "
 "
+
+" solarized goodness
+colorscheme solarized
+set background=dark
+
+set statusline+=%{fugitive#statusline()}
+
+" enable mouse integration, for normal an visual modes
+set mouse=nvc
+" derp?
+" check if really needed:
+" http://vim.wikia.com/wiki/Using_the_mouse_for_Vim_in_an_xterm
+" :map <xCSI>[62~ <MouseDown>

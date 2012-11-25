@@ -2,7 +2,7 @@
 "set guifont=Nameless\ Amateur:h12
 " set noantialias
 "
-colorscheme railscasts
+"colorscheme railscasts solarized set in .vimrc.after
 set guifont=Source\ Code\ Pro:h13
 " hide toolbar
 set go-=T

@@ -16,7 +16,7 @@ export PATH=$PATH:$GOPATH/bin:$HOME/bin
 #export CC=/usr/bin/gcc-4.2
 #export CXX=/usr/bin/g++-4.2
 
-export EDITOR="mvim -f"
+export EDITOR="vim -f"
 
 export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=256m"
 
@@ -31,3 +31,6 @@ export AWS_RDS_HOME="/usr/local/Cellar/rds-command-line-tools/1.6.001/jars"
 
 # curl CA bundle
 export CURL_CA_BUNDLE="/usr/share/curl/curl-ca-bundle.crt"
+
+# Heroku toolbelt
+export PATH=/usr/local/heroku/bin:$PATH

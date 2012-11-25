@@ -5,3 +5,6 @@
   autocrlf = false
 [github]
   user = pschyska
+[http]
+[push]
+	default = upstream

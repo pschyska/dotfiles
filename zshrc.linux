@@ -55,3 +55,7 @@ alias gpu='git pull upstream $1'
 alias gus='git submodule foreach git pull origin master'
 
 HISTSIZE=2000
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export GOPATH=~/projects/go
+PATH=$PATH:$GOPATH/bin

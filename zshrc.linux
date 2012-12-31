@@ -62,3 +62,9 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export GOPATH=~/projects/go
 PATH=$PATH:$GOPATH/bin
+
+# dircolors
+# http://michaelheap.com/getting-solarized-working-on-ubuntu/
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi

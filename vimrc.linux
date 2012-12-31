@@ -12,8 +12,57 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails.git'
 Bundle 'ack.vim'
 Bundle 'The-NERD-tree'
+  " Select current file in NERDTree
+  map <silent> <Leader>f :NERDTreeFind<CR>
+  " change pwd when nt changes root
+  let NERDTreeChDirMode=1
+  let NERDTreeShowHidden=1
+  let NERDTreeCasadeOpenSingleChildDir=1
+  let NERDTreeIgnore=['^\.DS_Store$']
+
+  " alias NERDTree to cd :-)
+  cnoreabbrev cd NERDTree
 Bundle 'jnwhiteh/vim-golang'
-set rtp+=~/.vim/bundle/gocode
+Bundle 'vimwiki'
+Bundle 'go.vim'
+  set rtp+=~/.vim/bundle/gocode
+  nnoremap <silent> <F8> :Godoc<CR>
+  nnoremap <silent> <F9> :Fmt<CR>
+  nnoremap <silent> <F10> :w<CR>:Fmt<CR>:!go run %<CR>
+Bundle 'ctrlp.vim'
+  let g:ctrlp_max_files = 100000
+  let g:ctrlp_working_path_mode = 0
+  let g:ctrlp_clear_cache_on_exit = 1
+  map <silent> <C-y> :CtrlPMRUFiles<CR>
+Bundle 'Solarized'
+  syntax enable
+  if has('gui_running')
+    set background=light
+  else
+    set background=dark
+  endif
+  set t_Co=16
+  let g:solarized_termcolors=16
+  colorscheme solarized
+Bundle 'fugitive.vim'
+  set statusline+=%{fugitive#statusline()}
+
+" eclim
+
+"  " indent java with 4 spaces
+"  au FileType java set tabstop=4 shiftwidth=4
+"  
+"  " eclim, fix imports and format source
+"  au FileType java map <silent> <C-i> :JavaImportMissing<CR>:JavaImportClean<CR>:%JavaFormat<CR>
+"  
+"  au FileType java map <silent> <D-I> :JavaImport<CR>
+"  au FileType java imap <silent> <D-I> :JavaImport<CR>
+"  
+"  let g:EclimMavenPomClasspathUpdate = 0
+"  let g:EclimJavaCompleteCaseSensitive = 1
+
+" " rebind user completion to C-Space
+"  au FileType java imap <C-Space> <C-x><C-u>
 
 filetype plugin indent on     " required!
 "
@@ -25,3 +74,73 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
+
+set hidden
+
+" Set 7 lines to the cursor when moving vertical from
+" http://amix.dk/vim/vimrc.html
+set so=7
+" after using ., move cursor back to editing location when you started
+" (http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/)
+nmap . .`[
+" everything that goes to or from unnamed register will affect *, too (OSX
+" cliboard)"
+set clipboard=unnamed
+" Edit .vimrc
+nmap <C-F12> :e ~/.vimrc<CR>
+" save and source current buffer
+nmap <C-F11> :w<CR>:source %<CR>
+
+set listchars=""                " Reset the listchars
+set listchars=tab:▸\            " a tab should display as "▸ "
+"set listchars=tab:\ \           " a tab should display as " "
+set listchars+=trail:·          " show trailing spaces as "·"
+"set listchars+=trail:\          " show trailing spaces as "·"
+set listchars+=extends:>        " The character to show in the last column when wrap is
+                                " off and the line continues beyond the right of the screen
+set listchars+=precedes:<       " The character to show in the last column when wrap is
+
+
+" ESC to cancel completion
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+set completeopt+=longest
+
+
+""
+"" Wild settings
+
+set wildignore="" " reset
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+"set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+set wildignore+=*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/tmp/*
+
+" Ignore temp and backup files
+set wildignore+=*.swp,*~,._*
+
+" Ignore png files
+set wildignore+=*.png
+
+" Ignore .DS_Store files
+set wildignore+=*.DS_Store
+"
+"
+
+" enable mouse integration, for normal an visual modes
+set mouse=nvc
+" derp?
+" check if really needed:
+" http://vim.wikia.com/wiki/Using_the_mouse_for_Vim_in_an_xterm
+" :map <xCSI>[62~ <MouseDown>

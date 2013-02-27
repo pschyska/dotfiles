@@ -8,3 +8,6 @@
 [http]
 [push]
 	default = upstream
+[branch]
+[http]
+	sslVerify = false

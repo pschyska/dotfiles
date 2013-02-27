@@ -7,7 +7,10 @@ map <silent> <Leader>f :NERDTreeFind<CR>
 let NERDTreeChDirMode=1
 let NERDTreeShowHidden=1
 let NERDTreeCasadeOpenSingleChildDir=1
-let NERDTreeIgnore=['^\.DS_Store$']
+"let NERDTreeIgnore += ['^\.DS_Store$']
+
+" turns off jshint
+let g:syntastic_javascript_checkers = ['jsl']
 
 " alias NERDTree to cd :-)
 cnoreabbrev cd NERDTree
@@ -26,7 +29,6 @@ nnoremap <silent> <F8> :Godoc<CR>
 nnoremap <silent> <F9> :Fmt<CR>
 nnoremap <silent> <F10> :w<CR>:Fmt<CR>:!go run %<CR>
 
-" auto-save on alt-tab
 au FocusLost * silent! wall
 
 " Highlight currently open file in nerdtree
@@ -61,7 +63,7 @@ function! rc:syncTree()
   endif
 endfunction
 
-autocmd BufEnter * call rc:syncTree()
+" autocmd BufEnter * call rc:syncTree()
 
 set hidden
 
@@ -79,7 +81,10 @@ nmap <F11> :source %<CR>
 let g:ctrlp_max_files = 100000
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_max_height = 40
+let g:ctrlp_show_hidden = 1
 
+map <silent> <C-t> :CtrlP<CR>
 map <silent> <C-y> :CtrlPMRUFiles<CR>
 
 set listchars=""                " Reset the listchars
@@ -116,6 +121,8 @@ let g:EclimJavaCompleteCaseSensitive = 1
 " rebind user completion to C-Space
 au FileType java imap <C-Space> <C-x><C-u>
 
+set noignorecase
+
 " ESC to cancel completion
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
@@ -145,13 +152,11 @@ set wildignore+=*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/tmp/*
 " Ignore temp and backup files
 set wildignore+=*.swp,*~,._*
 
-" Ignore png files
-set wildignore+=*.png
+" Ignore image files
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.psd,*.tiff
 
 " Ignore .DS_Store files
 set wildignore+=*.DS_Store
-"
-"
 
 " solarized goodness
 colorscheme solarized
@@ -164,4 +169,12 @@ set mouse=nvc
 " derp?
 " check if really needed:
 " http://vim.wikia.com/wiki/Using_the_mouse_for_Vim_in_an_xterm
-" :map <xCSI>[62~ <MouseDown>
+" map <xCSI>[62~ <MouseDown>
+
+" resize window
+
+nnoremap <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <Leader>. :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <Leader>, :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+

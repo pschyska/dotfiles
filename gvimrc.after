@@ -3,6 +3,7 @@
 " set noantialias
 "
 "colorscheme railscasts solarized set in .vimrc.after
-set guifont=Source\ Code\ Pro:h13
+"set guifont=Source\ Code\ Pro:h13
+set guifont=PragmataPro:h14
 " hide toolbar
 set go-=T

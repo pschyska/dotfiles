@@ -25,7 +25,9 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby rails bundler osx)
+
+#plugins=(git ruby rails bundler osx)
+plugins=(ruby rails bundler osx)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt CORRECT
@@ -50,8 +52,14 @@ alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gru='git remote update'
 alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+alias glp'gl git log -p ..@{u}'
 alias grbu='git pull --rebase upstream $1'
 alias gpu='git pull upstream $1'
 alias gus='git submodule foreach git pull origin master'
+alias karbg="killall ruby; be guard"
 
 HISTSIZE=2000
+setopt HIST_IGNORE_SPACE
+cowthink 'The fun never ends!'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

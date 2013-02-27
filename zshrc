@@ -27,7 +27,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
 #plugins=(git ruby rails bundler osx)
-plugins=(ruby rails bundler osx)
+plugins=(ruby rails bundler)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt CORRECT

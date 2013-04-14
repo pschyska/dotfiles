@@ -34,7 +34,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git)
-plugins=(ruby rails bundler)
+plugins=(ruby rails command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt CORRECT
@@ -70,9 +70,32 @@ setopt HIST_IGNORE_SPACE
 cowthink 'The fun never ends!'
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+#export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 # local scripts and stuff
 PATH=$PATH:$HOME/bin
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+ATH=/usr/local/heroku/bin:$PATH
+
+#export PATH=/home/pschyska/bin/Sencha/Cmd/3.1.0.256:$PATH
+#export SENCHA_CMD_3_0_0="/home/pschyska/bin/Sencha/Cmd/3.1.0.256"
+
+export PATH=/home/pschyska/bin/Sencha/Cmd/3.0.2.288:$PATH
+export SENCHA_CMD_3_0_0="/home/pschyska/bin/Sencha/Cmd/3.0.2.288"
+
+export PATH=$PATH:/home/pschyska/usr/local/adt-bundle-linux-x86_64-20130219/sdk/tools
+export PATH=$PATH:/home/pschyska/usr/local/adt-bundle-linux-x86_64-20130219/sdk/platform-tools
+
+export EDITOR="gvim -f"
+
+export ANT_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
+export MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
+
+export CATALINA_OPTS="-Dshutdown.port=8005 -Dhttp.port=8080\
+                -Dhttp.address=127.0.0.1 -Dhttp.redirectPort=8443\
+                -Dajp.port=8009 -Dajp.redirectPort=8443\
+                -Dajp.address=127.0.0.1 -DjvmRoute=local\
+                -Daccess.log.dir=/tmp/"

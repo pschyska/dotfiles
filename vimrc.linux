@@ -25,6 +25,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'timcharper/textile.vim'
 Bundle 'chrisbra/csv.vim'
+"Bundle 'dart-lang/dart-vim-plugin'
+"  set makeprg=$DART_SDK/bin/dart_analyzer\ --enable_type_checks\ %\ 2>&1\ \\\|\ sed\ 's/file://'
 
 " === TOOLS ===
 

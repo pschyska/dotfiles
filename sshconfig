@@ -1,3 +1,6 @@
-Compression=yes
-TCPKeepAlive=no
-ServerAliveInterval=15
+Host *
+  HashKnownHosts no
+  ServerAliveInterval 300
+#Compression=yes
+#ControlMaster auto
+#ControlPath ~/.ssh/master-%r@%h:%p

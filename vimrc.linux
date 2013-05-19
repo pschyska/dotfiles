@@ -304,6 +304,7 @@ set listchars+=extends:>
 set listchars+=precedes:<
 
 set completeopt+=longest
+set infercase " match case-sensitive
 
 set wildignore=""
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem

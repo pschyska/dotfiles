@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="kphoen"
+ZSH_THEME="paul"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -34,7 +34,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git)
-plugins=(suse)
+plugins=(command-not-found)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -49,6 +49,8 @@ alias r='rails'
 alias be='bundle exec'
 
 alias gco='git checkout'
+alias gbn='git branch --no-merge'
+alias gsn='git show --name-only'
 alias gf='git fetch'
 alias gp='git pull'
 alias gpu='git pull upstream'
@@ -59,39 +61,67 @@ alias gs='g'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gru='git remote update'
-alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %aD%Creset"'
 alias glp'gl git log -p ..@{u}'
 alias grbu='git pull --rebase upstream $1'
 alias gpu='git pull upstream $1'
 alias gpp='git pull && git push'
 alias gus='git submodule foreach git pull origin master'
 alias karbg="killall ruby; be guard"
+alias rgrep="rgrep -i"
+alias irgb="gem install rubygems-bundler && gem regenerate_binstubs"
+
+alias z="zeus"
+
 
 HISTSIZE=2000
 setopt HIST_IGNORE_SPACE
 
 # local scripts and stuff
-#PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/bin
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# add sbin to paths for easier sudo usage
-# taken from /etc/profile
-test -d /opt/kde3/sbin  && PATH=/opt/kde3/sbin:$PATH
-PATH=/sbin:/usr/sbin:/usr/local/sbin:$PATH
+#PATH=$PATH:/home/pschyska/opt/idea-IU-107.777/bin
+PATH=$PATH:/home/pschyska/opt/idea-IU-130.754/bin
 
-export PATH=/home/pschyska/bin/Sencha/Cmd/3.0.2.288:$PATH
-export SENCHA_CMD_3_0_0="/home/pschyska/bin/Sencha/Cmd/3.0.2.288"
+PATH=$PATH:$HOME/node_modules/.bin
 
-export PATH=$PATH:/home/pschyska/usr/local/adt-bundle-linux-x86_64-20130219/sdk/tools
-export PATH=$PATH:/home/pschyska/usr/local/adt-bundle-linux-x86_64-20130219/sdk/platform-tools
 
+export SENCHA_CMD_3_0_0="/home/pschyska/bin/Sencha/Cmd/3.1.2.342"
+PATH=$PATH:/home/pschyska/bin/Sencha/Cmd/3.1.2.342
+
+#export SENCHA_CMD_3_0_0="$HOME/bin/Sencha/Cmd/3.0.2.288"
+#PATH=$PATH:$HOME/bin/Sencha/Cmd/3.0.2.288
+
+# elasticsearch
+PATH=$PATH:/usr/share/elasticsearch/bin
+
+PATH=$PATH:$HOME/opt/adt-bundle-linux-x86_64-20130514/sdk/tools
+PATH=$PATH:$HOME/opt/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
+
+# heroku
+
+PATH=$PATH:/usr/local/heroku/bin
+
+# golang
+
+# default go path
+export GOPATH=$HOME/projects/go
+PATH=$PATH:$GOPATH/bin
+
+# gob scripts for automatically setting go path
+[[ -s "/home/pschyska/projects/gob/gob.sh" ]] && source "/home/pschyska/projects/gob/gob.sh" # Load gob
+
+# add this GOPATH/bin globally, so programs in there are available even if gob selects a project-specific GOPATH
+# (i.e. gocode)
+PATH=$PATH:$HOME/projects/go/bin
+
+# Sublime Text
+PATH=$PATH:"/home/pschyska/opt/Sublime Text 2"
 export EDITOR="gvim -f"
 
-export DART_SDK=/home/pschyska/projects/dart/dart-sdk
-export PATH=$PATH:$DART_SDK/bin
-
-export CLASSPATH=$CLASSPATH:/home/pschyska/projects/liferay/workspace/liferay-fs/liferay-portal/lib/development/ecj.jar
+export CLASSPATH=$CLASSPATH:$HOME/projects/liferay/workspace/liferay-fs/liferay-portal/lib/development/ecj.jar
 export ANT_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
 export MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
 
@@ -101,4 +131,5 @@ export CATALINA_OPTS="-Dshutdown.port=8005 -Dhttp.port=8080\
                 -Dajp.address=127.0.0.1 -DjvmRoute=local\
                 -Daccess.log.dir=/tmp/"
 
-#cowthink 'The fun never ends!'
+cowthink 'The fun never ends!' | toilet -F gay -f term
+alias wtf\?=nyancat

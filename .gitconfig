@@ -1,0 +1,7 @@
+[user]
+	email = pschyska@gmail.com
+	name = Paul Schyska
+[push]
+	default = simple
+[merge]
+	conflictstyle = diff3

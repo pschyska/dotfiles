@@ -14,7 +14,7 @@
 
 # Finally use xcape to cause the space bar to generate a space when tapped.
 # ./xcape -t 200 -d -e "$spare_modifier=space;Control_L=Escape;Alt_L=BackSpace"
-xcape -t 0 -d -e "Control_L=Escape;Alt_L=BackSpace"
+xcape -d -e "Control_L=Escape;Alt_L=BackSpace"
 
 # reset to default
 #xmodmap -e "keycode 65 = space"
